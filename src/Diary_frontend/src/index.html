@@ -3,22 +3,201 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Diary</title>
+    <title>dAppiDiary - kids homework diary</title>
     <base href="/" />
     <link rel="icon" href="favicon.ico" />
-    <link type="text/css" rel="stylesheet" href="main.css" />
+    <link type="text/css" rel="stylesheet" href="tabs.css" />
+    <link type="text/css" rel="stylesheet" href="diary.css" />
   </head>
   <body>
-    <main>
-      <img src="logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting"></section>
-    </main>
+
+    <div id="logo">
+      <img src="logo1.svg" alt="logo" />
+    </div>
+    <div id="container">
+      <!-- Templates will be loaded here -->
+    </div>
+    
+    <template id="landingPageTemplate">
+      <section id="landingPage">
+        <div class="grid">
+          <div class="box">
+            <h3>Introducing dAppiDiary: The Ultimate Homework Companion</h3>
+            <p>Welcome to dAppiDiary, the innovative homework diary designed specifically for primary school students. Developed with parents in mind, dAppiDiary is here to simplify your child's academic journey and keep you in the loop every step of the way. </p>
+            <p>Powered by web3 technology and built on the secure ICP blockchain.</p>
+            <p><img class='' src="ic-badge.svg" alt="ICP Badge" /></p>
+          </div>
+            <div class="box opaque">
+              <h4>Try Out the dAppiDiary Demo</h4>
+            <p>Want to see dAppiDiary in action? <br />Try out our interactive demo and explore its features!</p>
+              <button id="diaryAppButton" class="ghost-button">Launch Demo</button>
+            </div>
+            <div class="box opaque">
+              <h4>Try Out the Teacher's Dashboard Demo</h4>
+            <p>Experience the power of the teacher's dashboard and its functionalities in our demo!</p>
+              <button id="dashboardButton" class="ghost-button">Launch Demo</button>
+            </div>
+          </div>
+      </section>
+    </template>
+    
+    <template id="diaryAppTemplate">
+      <section id="diaryApp">
+
+        <main>
+            <div class='diary'>
+              <div class='diary_inner'>
+                <input false='' id='tab-1' name='buttons' type='radio'>
+                <label for='tab-1'>
+                  <div class='diary_inner__tab'>
+                    <h2>Monday <img class='tick_icon' src="tick.svg" alt="Tick icon" /> </h2>
+                    <div class='diary_entry'>
+                      <h4 class="subject">English</h4>
+                      <h3 class="title">Presentation - Morning routine</h3>
+                      <p class="description">Write the introduction: 1 - 2 paragraphs and practice by presenting it to your parents.</p>
+                    </div>
+                  </div>
+                </label>
+                <input false='' id='tab-2' name='buttons' type='radio'>
+                <label for='tab-2'>
+                  <div class='diary_inner__tab'>
+                    <h2>Tuesday <img class='tick_icon' src="tick.svg" alt="Tick icon" /></h2>
+                    <div class='diary_entry'>
+                      <h4 class="subject">Mathematics</h4>
+                      <h3 class="title">7 x tables</h3>
+                      <p class="description">Learn seven times tables up to 70 ready for the maths test on Tuesday morning.</p>
+                    </div>
+                  </div>
+                </label>
+                <input false='' id='tab-3' name='buttons' type='radio'>
+                <label for='tab-3'>
+                  <div class='diary_inner__tab'>
+                    <h2>Wednesday <img class='tick_icon' src="tick.svg" alt="Tick icon" /></h2>
+                    <div class='diary_entry'>
+                      <h4 class="subject">Geography</h4>
+                      <h3 class="title">Ox-bow lake</h3>
+                      <p class="description">Draw an illustration of the formation of an ox-bow lake, on paper or on your tablet.</p>
+                    </div>
+                  </div>
+                </label>
+                <input checked='' id='tab-4' name='buttons' type='radio'>
+                <label for='tab-4'>
+                  <div class='diary_inner__tab'>
+                    <h2>Thursday <img class='tick_icon' src="tick.svg" alt="Tick icon" /></h2>
+                    <div class='diary_entry'>
+                      <h4 class="subject">Technology</h4>
+                      <h3 class="title">HTML & CSS</h3>
+                      <p class="description">Finish exercise 4 on worksheet 2 - inline styles.</p>
+                    </div>
+                  </div>
+                </label>
+                <input false='' id='tab-5' name='buttons' type='radio'>
+                <label for='tab-5'>
+                  <div class='diary_inner__tab'>
+                    <h2>Friday <img class='tick_icon' src="tick.svg" alt="Tick icon" /></h2>
+                    <div class='diary_entry'>
+                      <h4 class="subject"></h4>
+                      <h3 class="title"></h3>
+                      <p class="description"></p>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+    
+            <!-- <div class="paging">
+              <div class="prev-week">week 12</div>
+              <div class="current-week">week 13</div>
+              <div class="next-week">week 14</div>
+            </div> -->
+    
+            <img class='ic-badge' src="ic-badge.svg" alt="ICP Badge" />
+    
+        </main>
+
+
+      </section>
+    </template>
+    
+    <template id="dashboardTemplate">
+      <section id="dashboard">
+        <div class="tab_container">
+          <input class="tab-input" id="tab1" type="radio" name="tabs" checked>
+          <label class="tab-label" for="tab1"><img class='tab_icon' src="list.svg" alt="Homework icon" /><span>Homework</span></label>
+      
+          <input class="tab-input" id="tab2" type="radio" name="tabs">
+          <label class="tab-label" for="tab2"><img class='tab_icon' src="kids.svg" alt="Kids icon" /><span>Students</span></label>
+      
+      
+          <section id="content1" class="tab-content tab-section">
+            <form id="homeworkForm">
+              <h4>Set Homework</h4>
+              <div class="form-row">
+                <label for="day">Day:</label>
+                <div class="input-field">
+                  <select id="day" name="day">
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                  </select>
+                </div>
+                <label for="subject">Subject:</label>
+                <div class="input-field">
+                  <select id="subject" name="subject">
+                    <option value="No Homework">No Homework</option>
+                    <option value="Art">Art</option>
+                    <option value="English">English</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Technology">Technology</option>
+                  </select>
+                </div>
+                <label for="title">Title:</label>
+                <div class="input-field">
+                  <input type="text" id="title" name="title" placeholder="Homework Title">
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="description">Description:</label>
+                <div class="input-field">
+                  <input type="text" id="description" name="description" placeholder="Homework Description">
+                </div>
+              </div>
+              <div class="submit-row">
+                <!-- <input type="submit" value="Set Homework"> -->
+                
+              </div>
+              
+            </form>
+            <button id="setHomeworkButton">Set Homework</button>
+
+            <div class='diary_entry orange'>
+              <h2>Thursday</h2>
+                <h4 class="dash-entry"><span class="subject">Art & Design</span> : <span class="title">Still life drawing</span></h4>
+                <p class="description dash-entry">Finish the shading on the fruit, using coloured pencils or crayons.</p>
+                <h3 class="complete dash-entry">Complete</h3>
+                <ul class="dash-list">
+                  <li>Jake K</li>
+                  <li>Emma W</li>
+                  <li>Louis C</li>
+                  <li>Quin J</li>
+                  <li>Elodie L</li>
+                </ul>
+              </div>
+            <div class='diary_entry blue'>
+            <h2>Friday</h2>
+              <h4 class="subject dash-entry">Art & Design <span class="title">Still life drawing</span></h4>
+              <p class="description dash-entry">Finish the shading on the fruit, using coloured pencils or crayons.</p>
+            </div>
+          </section>
+          <section id="content2" class="tab-content tab-section">
+            <h3>Children</h3>
+                <p> Child Name / Secret Code (click to reveal) / dAppiCoins balance / edit / delete </p>
+          </section>
+        </div>
+      </section>
+    </template>
   </body>
 </html>
