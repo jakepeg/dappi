@@ -1,6 +1,25 @@
 import { Diary_backend } from "../../declarations/Diary_backend";
 
-function updateDiaryEntries(jsonArray) {
+window.addEventListener('load', loadLandingPage);
+
+const entries = [];
+function processEntries(jsonArray) {
+  jsonArray.forEach(({ homework }) => {
+    const { description, day, subject, title } = homework;
+    entries.push({ description, day, subject, title });
+  });
+  console.log(entries);
+}
+
+const getAllEntries = async () => {
+    const jsonArray = await Diary_backend.getAllEntries();
+    processEntries(jsonArray);
+};
+
+getAllEntries();
+
+
+function renderDiaryEntries(jsonArray) {
   const diaryEntries = document.getElementsByClassName('diary_entry');
   const subjectElements = document.getElementsByClassName('subject');
   const titleElements = document.getElementsByClassName('title');
@@ -18,23 +37,6 @@ function updateDiaryEntries(jsonArray) {
   });
 }
 
-function processEntries(jsonArray) {
-  const entries = [];
-
-  jsonArray.forEach(({ homework }) => {
-    const { description, day, subject, title } = homework;
-    entries.push({ description, day, subject, title });
-  });
-
-  console.log(entries);
-  updateDiaryEntries(entries);
-}
-
-const getAllEntries = async () => {
-    const jsonArray = await Diary_backend.getAllEntries();
-    processEntries(jsonArray);
-  };
-
 // document.addEventListener("DOMContentLoaded", getAllEntries);
 // Build the DOM
 
@@ -42,8 +44,6 @@ const container = document.getElementById('container');
 const landingPageTemplate = document.getElementById('landingPageTemplate');
 const diaryAppTemplate = document.getElementById('diaryAppTemplate');
 const dashboardTemplate = document.getElementById('dashboardTemplate');
-
-window.addEventListener('load', loadLandingPage);
 
 function loadLandingPage() {
   clearContainer();
@@ -65,14 +65,14 @@ function loadDiaryApp() {
   clearContainer();
   const diaryApp = diaryAppTemplate.content.cloneNode(true);
   container.appendChild(diaryApp);
-  getAllEntries();
+  renderDiaryEntries(entries);
 }
 
 function loadDashboard() {
   clearContainer();
   const dashboard = dashboardTemplate.content.cloneNode(true);
   container.appendChild(dashboard);
-
+  renderDiaryEntries(entries);
   // const form = document.getElementById('homeworkForm');
   const setHomeworkButton = document.getElementById('setHomeworkButton');
   setHomeworkButton.addEventListener('click', setHomework);
